@@ -1,0 +1,15 @@
+1665229446149	geckodriver	INFO	Listening on 127.0.0.1:55845
+1665229653465	geckodriver	INFO	Listening on 127.0.0.1:56211
+1665229656500	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "56212" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Sakowl\\AppData\\Local\\Temp\\rust_mozprofilegGPm9y"
+1665229656786	Marionette	INFO	Marionette enabled
+1665229656791	Marionette	INFO	Listening on port 56221
+Read port: 56221
+WebDriver BiDi listening on ws://127.0.0.1:56212
+1665229656889	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Sakowl\\AppData\\Local\\Temp\\rust_mozprofilegGPm9y\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:56212/devtools/browser/0f992931-1e77-4453-b816-fe85f75b181b
+JavaScript warning: https://www.bybit.com/JY83ptTo5HUK/uJ/aKpPMvrWLu/7D3Gfchw3w/XHgJa1FGaAI/dk/VoJzlrFV0B, line 1: unreachable code after return statement
+JavaScript warning: https://www.bybit.com/JY83ptTo5HUK/uJ/aKpPMvrWLu/7D3Gfchw3w/XHgJa1FGaAI/dk/VoJzlrFV0B, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://www.bybit.com/JY83ptTo5HUK/uJ/aKpPMvrWLu/7D3Gfchw3w/XHgJa1FGaAI/dk/VoJzlrFV0B, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://h.online-metrix.net/fp/check.js;CIS3SID=39140AD1149DC6410B5ACA6D0563E6C7?org_id=k8vif92e&session_id=bybitfintech820c0a06-d9af-cc65-a535-6275252b0c37&nonce=9d6645d73bcd0d33&jb=3439242e6a71677f3d576b666c6d7771266a736d3557616e666775712732383130246a7b60773f466b7267646f7a2468716a3f4e69706d6c6f78273a38333037, line 137: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: NS_ERROR_NOT_AVAILABLE
