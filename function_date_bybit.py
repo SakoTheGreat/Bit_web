@@ -9,108 +9,38 @@ from time import sleep
 from tqdm import tqdm
 
 
-
-# driver.maximize_window() otkrit v bolshom okne
-
-
-
-sell_purchase = {'purchase': '1', 'sell': '0'}
-token = ["USDT", 'BTC']
-payment_method = {'Tinkoff': '75', 'Rosbank': '185', 'Raiffeisenbank': '64'}
-all_date = {
-'price_purchase_usdt': [],
-'price_sell_usdt': [],
-'price_purchase_btc': [],
-'price_sell_btc': [],    
-}
-
+all_date = []
+sub_urls = [
+    "1&token=USDT&fiat=RUB&paymentMethod=75",
+    "0&token=USDT&fiat=RUB&paymentMethod=75",
+    "1&token=USDT&fiat=RUB&paymentMethod=185",
+    "0&token=USDT&fiat=RUB&paymentMethod=185",
+    "1&token=USDT&fiat=RUB&paymentMethod=64",
+    "0&token=USDT&fiat=RUB&paymentMethod=64",
+    "1&token=BTC&fiat=RUB&paymentMethod=75",
+    "0&token=BTC&fiat=RUB&paymentMethod=75",
+    "1&token=BTC&fiat=RUB&paymentMethod=185",
+    "0&token=BTC&fiat=RUB&paymentMethod=185",
+    "1&token=BTC&fiat=RUB&paymentMethod=64",
+    "0&token=BTC&fiat=RUB&paymentMethod=64",
+]
 driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['purchase'] + '&token=' + token[0] + '&fiat=RUB&paymentMethod=' + payment_method['Tinkoff']
-driver.get(link_date)
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_purchase_usdt'].append({'Tinkoff': search_price.text})
-driver.close()
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['sell'] + '&token=' + token[0] + '&fiat=RUB&paymentMethod=' + payment_method['Tinkoff']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_sell_usdt'].append({'Tinkoff': search_price.text})
-driver.close()
 
 
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['purchase'] + '&token=' + token[0] + '&fiat=RUB&paymentMethod=' + payment_method['Rosbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_purchase_usdt'].append({'Rosbank': search_price.text})
-driver.close()
+def get_price(sub_url):
+    driver.get(f"https://www.bybit.com/fiat/trade/otc/?actionType={sub_url}")
+    sleep(3)
+    search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
+    return search_price.text
 
 
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['sell'] + '&token=' + token[0] + '&fiat=RUB&paymentMethod=' + payment_method['Rosbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_sell_usdt'].append({'Rosbank': search_price.text})
-driver.close()
+for sub_url in sub_urls:
+    price = get_price(sub_url)
+    all_date.append(price)
 
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['purchase'] + '&token=' + token[0] + '&fiat=RUB&paymentMethod=' + payment_method['Raiffeisenbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_purchase_usdt'].append({'Raiffeisenbank': search_price.text})
-driver.close()
-
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['sell'] + '&token=' + token[0] + '&fiat=RUB&paymentMethod=' + payment_method['Raiffeisenbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_sell_usdt'].append({'Raiffeisenbank': search_price.text})
-driver.close()
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['purchase'] + '&token=' + token[1] + '&fiat=RUB&paymentMethod=' + payment_method['Tinkoff']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_purchase_btc'].append({'Tinkoff': search_price.text})
-driver.close()
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['sell'] + '&token=' + token[1] + '&fiat=RUB&paymentMethod=' + payment_method['Tinkoff']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_sell_btc'].append({'Tinkoff': search_price.text})
-driver.close()
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['purchase'] + '&token=' + token[1] + '&fiat=RUB&paymentMethod=' + payment_method['Rosbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_purchase_btc'].append({'Rosbank': search_price.text})
-driver.close()
-
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['sell'] + '&token=' + token[1] + '&fiat=RUB&paymentMethod=' + payment_method['Rosbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_sell_btc'].append({'Rosbank': search_price.text})
-driver.close()
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['purchase'] + '&token=' + token[1] + '&fiat=RUB&paymentMethod=' + payment_method['Raiffeisenbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_purchase_btc'].append({'Raiffeisenbank': search_price.text})
-driver.close()
-
-driver = Chrome()
-link_date = "https://www.bybit.com/fiat/trade/otc/?actionType=" + sell_purchase['sell'] + '&token=' + token[1] + '&fiat=RUB&paymentMethod=' + payment_method['Raiffeisenbank']
-driver.get(link_date)       
-search_price = driver.find_element(By.CSS_SELECTOR, 'div.trade-table__wrapper span.price-amount')
-all_date['price_sell_btc'].append({'Raiffeisenbank': search_price.text})
-driver.close()
 
 
 print(all_date)
+
+sleep(5)
+driver.close()
